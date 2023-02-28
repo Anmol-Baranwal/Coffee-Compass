@@ -4,10 +4,24 @@ import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 
 import Banner from "@/components/banner";
+import Card from "@/components/card";
+
+import coffeeStoresData from "../data/coffee-stores.json";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export async function getStaticProps() {
+  // const data= fetch(coffeeStores)
+  console.log("hey");
+  return {
+    props: {
+      coffeeStores: coffeeStoresData, // both key & value
+    },
+  };
+}
+
+export default function Home(props) {
+  console.log("props", props);
   const handleOnBannerBtnClick = () => {
     console.log("banner btn clicked");
   };
@@ -28,6 +42,24 @@ export default function Home() {
         <div className={styles.heroImage}>
           <Image src="/static/hero-image3.png" width={500} height={300} />
         </div>
+        {props.coffeeStores.length > 0 && (
+          <>
+            <h2 className={styles.heading2}>Coffee Stores</h2>
+            <div className={styles.cardLayout}>
+              {props.coffeeStores.map((coffeeStore) => {
+                return (
+                  <Card
+                    key={coffeeStore.id}
+                    name={coffeeStore.name}
+                    // imgURL={coffeeStore.imgURL}
+                    href={`/coffee-store/${coffeeStore.id}`}
+                    className={styles.card}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
       </main>
     </>
   );
