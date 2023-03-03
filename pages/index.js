@@ -7,15 +7,19 @@ import Banner from "@/components/banner";
 import Card from "@/components/card";
 
 import coffeeStoresData from "../data/coffee-stores.json";
+import { fetchCoffeeStores } from "@/lib/coffee-store";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export async function getStaticProps() {
   // const data= fetch(coffeeStores)
-  console.log("hey");
-  return {
+
+  const coffeeStores= await fetchCoffeeStores();
+
+  return { 
     props: {
-      coffeeStores: coffeeStoresData, // both key & value
+      coffeeStores,   // both data and value
+      // coffeeStores: data.results, 
     },
   };
 }
@@ -49,10 +53,13 @@ export default function Home(props) {
               {props.coffeeStores.map((coffeeStore) => {
                 return (
                   <Card
-                    key={coffeeStore.id}
+                    key={coffeeStore.fsq_id}
                     name={coffeeStore.name}
-                    // imgURL={coffeeStore.imgURL}
-                    href={`/coffee-store/${coffeeStore.id}`}
+                    imgURL={
+                      coffeeStore.imgURL ||
+                      "https://images.unsplash.com/photo-1453614512568-c4024d13c247?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
+                    }
+                    href={`/coffee-store/${coffeeStore.fsq_id}`}
                     className={styles.card}
                   />
                 );
