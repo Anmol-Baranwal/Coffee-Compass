@@ -1,6 +1,6 @@
 /** By default, this is a mobile breakpoint **/
 .container {
-    margin-bottom: 6rem;
+    margin-bottom: 1.2rem;
     position: relative;
     z-index: 2;
   }

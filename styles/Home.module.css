@@ -31,6 +31,10 @@
   justify-content: center;
 }
 
+.sectionWrapper {
+  margin-top: 3.5rem;
+}
+
 .heading2{
   font-size: 2.5rem;
   line-height: 2;
