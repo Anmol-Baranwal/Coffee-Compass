@@ -10,7 +10,8 @@ import coffeeStoresData from "../data/coffee-stores.json";
 import { fetchCoffeeStores } from "@/lib/coffee-store";
 
 import useTrackLocation from "../hooks/use-track-location";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import {ACTION_TYPES, StoreContext} from "./_app";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,8 +32,12 @@ export default function Home(props) {
   console.log("props", props);
 
   // handleTrackLocation();
-  const { handleTrackLocation, latLong, locationErrorMsg, isFindingLocation } =
+  const { handleTrackLocation, locationErrorMsg, isFindingLocation } =
     useTrackLocation();
+
+  const {dispatch, state} = useContext(StoreContext)
+
+  const {coffeeStore, latLong} = state;
 
   console.log({ latLong, locationErrorMsg }); // this will print key: value for both , easier syntax
 
@@ -47,7 +52,11 @@ export default function Home(props) {
         const fetchedCoffeeStores = await fetchCoffeeStores(latLong, 30);
         console.log({ fetchCoffeeStores });
         // set coffee store
-        setCoffeeStores(fetchCoffeeStores);
+        // setCoffeeStores(fetchCoffeeStores);
+        dispatch({
+          type: ACTION_TYPES.SET_COFFEE_STORES,
+          payload: {coffeeStores: fetchedCoffeeStores},
+        });
       } catch (error) {
         console.log({ error });
         setCoffeeStoresError(error.message);
