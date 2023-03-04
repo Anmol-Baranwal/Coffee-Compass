@@ -12,12 +12,12 @@ import styles from "../../styles/coffee-store.module.css";
 export async function getStaticProps(staticProps) {
   const params = staticProps.params; // we can also destructure params in above parameter directly
   const coffeeStores = await fetchCoffeeStores();
-
+  const findCOffeeStoreById= coffeeStores.find((coffeeStore) => {
+    return coffeeStore.id.toString() === params.id; // dynamic id
+  });
   return {
     props: {
-      coffeeStore: coffeeStores.find((coffeeStore) => {
-        return coffeeStore.fsq_id.toString() === params.id; // dynamic id
-      }),
+      coffeeStore: findCOffeeStoreById ? findCOffeeStoreById : {}
     },
   };
 }
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
   const paths = coffeeStores.map((coffeeStore) => {
     return {
       params: {
-        id: coffeeStore.fsq_id.toString(),
+        id: coffeeStore.id.toString(),
       },
     };
   });
@@ -45,7 +45,7 @@ const coffeeStore = (props) => {
     return <div>Loading State</div>;
   }
 
-  const { location, name, imgURL } = props.coffeeStore;
+  const { address, name, neighborhood, imgURL } = props.coffeeStore;
 
   const handleUpvoteButton = () => {
     console.log("what");
@@ -65,7 +65,7 @@ const coffeeStore = (props) => {
         <div className={styles.col1}>
           <div className={styles.backToHomeLink}>
             <Link href="/">
-              <>Go to home page</>
+              <> ← Go to Home</>   {/* ◀ */}
             </Link>
           </div>
           <div className={styles.nameWrapper}>
@@ -83,14 +83,18 @@ const coffeeStore = (props) => {
           ></Image>
         </div>
         <div className={cls("glass", styles.col2)}>
-          <div className={styles.iconWrapper}>
-            <Image src="/static/icons/places.svg" width="24" height="24" />
-            <p className={styles.text}>{location.address}</p>
-          </div>
-          <div className={styles.iconWrapper}>
-            <Image src="/static/icons/near.svg" width="24" height="24" />
-            <p className={styles.text}>{location.neighborhood}</p>
-          </div>
+          {address && (     /* only display when adress is not empty */
+            <div className={styles.iconWrapper}>
+              <Image src="/static/icons/places.svg" width="24" height="24" />
+              <p className={styles.text}>{address}</p>
+            </div>
+          )}
+          {neighborhood && (
+            <div className={styles.iconWrapper}>
+              <Image src="/static/icons/near.svg" width="24" height="24" />
+              <p className={styles.text}>{neighborhood}</p>
+            </div>
+          )}
           <div className={styles.iconWrapper}>
             <Image src="/static/icons/star.svg" width="24" height="24" />
             <p className={styles.text}>1</p>
