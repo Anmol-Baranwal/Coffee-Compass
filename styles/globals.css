@@ -95,6 +95,8 @@ body {
     rgb(var(--background-start-rgb));
 
     background: url("/static/bg2.jpg");
+
+    /* background: no-repeat 50% cover ; */
 }
 
 a {
