@@ -1,17 +1,25 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+
+import {ACTION_TYPES, storeContext} from "../pages/_app"
 
 const useTrackLocation = () => {
     const [locationErrorMsg, setLocationErrorMsg] = useState("");
 
-    const [latLong, setLatLong] = useState("");
+    // const [latLong, setLatLong] = useState("");
 
     const [isFindingLocation, setFindingLocation] = useState(false);
+
+    const {dispatch} = useContext(storeContext)
 
     const success = (position) => {
         const latitude= position.coords.latitude;
         const longitude= position.coords.longitude;
 
-        setLatLong(`${latitude}, ${longitude}`)
+        // setLatLong(`${latitude}, ${longitude}`)
+        dispatch({
+            type: ACTION_TYPES.SET_LAT_LONG,
+            payload: {latLong: `${latitude},${longitude}`}
+        })
         setLocationErrorMsg("");
         setFindingLocation(false);
     }
@@ -33,7 +41,7 @@ const useTrackLocation = () => {
     }
 
     return {
-        latLong,
+        // latLong,
         handleTrackLocation,
         locationErrorMsg,
         isFindingLocation,
