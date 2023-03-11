@@ -1,7 +1,7 @@
 // import React from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
+// import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 
 import Banner from "@/components/banner";
@@ -14,7 +14,7 @@ import useTrackLocation from "../hooks/use-track-location";
 import { useEffect, useState, useContext } from "react";
 import { ACTION_TYPES, StoreContext } from "../store/store-context";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export async function getStaticProps() {
   // const data= fetch(coffeeStores)
