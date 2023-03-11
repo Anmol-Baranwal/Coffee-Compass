@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 
-import {ACTION_TYPES, storeContext} from "../pages/_app"
+import {ACTION_TYPES, storeContext} from "../store/store-context"
 
 const useTrackLocation = () => {
     const [locationErrorMsg, setLocationErrorMsg] = useState("");

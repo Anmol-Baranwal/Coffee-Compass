@@ -3,7 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import cls from "classnames";
-
+import { StoreContext } from "../../store/store-context";
 import coffeeStoreData from "../../data/coffee-stores.json";
 import { fetchCoffeeStores } from "@/lib/coffee-store";
 
