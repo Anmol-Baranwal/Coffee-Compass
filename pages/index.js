@@ -12,7 +12,7 @@ import { fetchCoffeeStores } from "@/lib/coffee-store";
 
 import useTrackLocation from "../hooks/use-track-location";
 import { useEffect, useState, useContext } from "react";
-import {ACTION_TYPES, StoreContext} from "../store/store-context";
+import { ACTION_TYPES, StoreContext } from "../store/store-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,36 +38,39 @@ export default function Home(props) {
 
   const [coffeeStoresError, setCoffeeStoresError] = useState(null);
 
-  const {dispatch, state} = useContext(StoreContext)
+  const { dispatch, state } = useContext(StoreContext);
 
-  const {coffeeStores, latLong} = state;
+  const { coffeeStores, latLong } = state;
 
   console.log({ latLong, locationErrorMsg }); // this will print key: value for both , easier syntax
 
   // const [coffeeStores, setCoffeeStores] = useState("");
 
-  useEffect(() => {   // this way works otherwise an error is raised: destroy is not a function
+  useEffect(() => {
+    // this way works otherwise an error is raised: destroy is not a function
     async function setCoffeeStoresByLocation() {
-    if (latLong) {
-      try {
-        const fetchedCoffeeStores = await fetchCoffeeStores(latLong, 30);
-        console.log({ fetchCoffeeStores });
-        // set coffee store
-        // setCoffeeStores(fetchCoffeeStores);
-        const coffeeStores = await response.json();
-        dispatch({
-          type: ACTION_TYPES.SET_COFFEE_STORES,
-          payload: {coffeeStores: fetchedCoffeeStores},
-        });
-        setCoffeeStoresError("");
-      } catch (error) {
-        console.log({ error });
-        setCoffeeStoresError(error.message);
+      if (latLong) {
+        try {
+          const response = await fetch(
+            `/api/getCoffeeStoresByLocation?latLong=${latLong}&limit=30`
+          );
+          console.log({ fetchCoffeeStores });
+          // set coffee store
+          // setCoffeeStores(fetchCoffeeStores);
+          const coffeeStores = await response.json();
+          dispatch({
+            type: ACTION_TYPES.SET_COFFEE_STORES,
+            payload: { coffeeStores, },
+          });
+          setCoffeeStoresError("");
+        } catch (error) {
+          console.log({ error });
+          setCoffeeStoresError(error.message);
+        }
       }
     }
-  }
     setCoffeeStoresByLocation();
-  },[dispatch, latLong])
+  }, [dispatch, latLong]);
 
   // useEffect(() => {
   //   async function setCoffeeStoresByLocation() {
@@ -77,7 +80,7 @@ export default function Home(props) {
   //   }
   //   setCoffeeStoresByLocation();
   //   },[latLong])
-    
+
   const handleOnBannerBtnClick = () => {
     console.log("banner btn clicked");
     handleTrackLocation();
@@ -130,7 +133,6 @@ export default function Home(props) {
             </div>
           </div>
         )}
-
 
         {props.coffeeStores.length > 0 && (
           <div className={styles.sectionWrapper}>
