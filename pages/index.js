@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
@@ -18,7 +18,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export async function getStaticProps() {
   // const data= fetch(coffeeStores)
-
+  // this code runs on build time, so it is recommended to not 
+  // invoke internal api req since server hasn't even started yet, so direct call
   const coffeeStores = await fetchCoffeeStores();
 
   return {
@@ -37,7 +38,7 @@ export default function Home(props) {
     useTrackLocation();
 
   const [coffeeStoresError, setCoffeeStoresError] = useState(null);
-
+ 
   const { dispatch, state } = useContext(StoreContext);
 
   const { coffeeStores, latLong } = state;
@@ -49,7 +50,7 @@ export default function Home(props) {
   useEffect(() => {
     // this way works otherwise an error is raised: destroy is not a function
     async function setCoffeeStoresByLocation() {
-      if (latLong) {
+      if (latLong) { 
         try {
           const response = await fetch(
             `/api/getCoffeeStoresByLocation?latLong=${latLong}&limit=30`
