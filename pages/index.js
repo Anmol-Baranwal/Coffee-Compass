@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
@@ -35,15 +36,15 @@ export default function Home(props) {
   const { handleTrackLocation, locationErrorMsg, isFindingLocation } =
     useTrackLocation();
 
+  const [coffeeStoresError, setCoffeeStoresError] = useState(null);
+
   const {dispatch, state} = useContext(StoreContext)
 
-  const {coffeeStore, latLong} = state;
+  const {coffeeStores, latLong} = state;
 
   console.log({ latLong, locationErrorMsg }); // this will print key: value for both , easier syntax
 
-  const [coffeeStores, setCoffeeStores] = useState("");
-
-  const [coffeeStoresError, setCoffeeStoresError] = useState(null);
+  // const [coffeeStores, setCoffeeStores] = useState("");
 
   useEffect(() => {   // this way works otherwise an error is raised: destroy is not a function
     async function setCoffeeStoresByLocation() {
@@ -53,10 +54,12 @@ export default function Home(props) {
         console.log({ fetchCoffeeStores });
         // set coffee store
         // setCoffeeStores(fetchCoffeeStores);
+        const coffeeStores = await response.json();
         dispatch({
           type: ACTION_TYPES.SET_COFFEE_STORES,
           payload: {coffeeStores: fetchedCoffeeStores},
         });
+        setCoffeeStoresError("");
       } catch (error) {
         console.log({ error });
         setCoffeeStoresError(error.message);
@@ -64,7 +67,7 @@ export default function Home(props) {
     }
   }
     setCoffeeStoresByLocation();
-  },[latLong])
+  },[dispatch, latLong])
 
   // useEffect(() => {
   //   async function setCoffeeStoresByLocation() {
@@ -81,7 +84,7 @@ export default function Home(props) {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <Head>
         <title>Coffee Project</title>
         <meta name="description" content="for finding nearby coffee stores" />
@@ -113,7 +116,7 @@ export default function Home(props) {
               {props.coffeeStores.map((coffeeStore) => {
                 return (
                   <Card
-                    key={coffeeStore.fsq_id}
+                    key={coffeeStore.id}
                     name={coffeeStore.name}
                     imgURL={
                       coffeeStore.imgURL ||
@@ -151,6 +154,6 @@ export default function Home(props) {
           </div>
         )}
       </main>
-    </>
+    </div>
   );
 }

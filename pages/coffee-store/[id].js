@@ -1,3 +1,4 @@
+import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
@@ -5,19 +6,19 @@ import Image from "next/image";
 import cls from "classnames";
 import { StoreContext } from "../../store/store-context";
 import coffeeStoreData from "../../data/coffee-stores.json";
-import { fetchCoffeeStores } from "@/lib/coffee-store";
+import { fetchCoffeeStores } from "../../lib/coffee-store";
 
 import styles from "../../styles/coffee-store.module.css";
 
 export async function getStaticProps(staticProps) {
   const params = staticProps.params; // we can also destructure params in above parameter directly
   const coffeeStores = await fetchCoffeeStores();
-  const findCOffeeStoreById= coffeeStores.find((coffeeStore) => {
+  const findCoffeeStoreById= coffeeStores.find((coffeeStore) => {
     return coffeeStore.id.toString() === params.id; // dynamic id
   });
   return {
     props: {
-      coffeeStore: findCOffeeStoreById ? findCOffeeStoreById : {}
+      coffeeStore: findCoffeeStoreById ? findCoffeeStoreById : {}
     },
   };
 }

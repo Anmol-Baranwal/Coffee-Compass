@@ -19,7 +19,7 @@ const useTrackLocation = () => {
         dispatch({
             type: ACTION_TYPES.SET_LAT_LONG,
             payload: {latLong: `${latitude},${longitude}`}
-        })
+        });
         setLocationErrorMsg("");
         setFindingLocation(false);
     }
@@ -38,7 +38,7 @@ const useTrackLocation = () => {
             // status.textContent = "Locating...";
             navigator.geolocation.getCurrentPosition(success, error);   
         }
-    }
+    };
 
     return {
         // latLong,
@@ -46,6 +46,6 @@ const useTrackLocation = () => {
         locationErrorMsg,
         isFindingLocation,
     };
-}
+};
 
 export default useTrackLocation;
