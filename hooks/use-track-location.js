@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 
-import {ACTION_TYPES, storeContext} from "../store/store-context"
+import {ACTION_TYPES, StoreContext} from "../store/store-context"
 
 const useTrackLocation = () => {
     const [locationErrorMsg, setLocationErrorMsg] = useState("");
@@ -9,7 +9,7 @@ const useTrackLocation = () => {
 
     const [isFindingLocation, setFindingLocation] = useState(false);
 
-    const {dispatch} = useContext(storeContext)
+    const {dispatch} = useContext(StoreContext);
 
     const success = (position) => {
         const latitude= position.coords.latitude;
