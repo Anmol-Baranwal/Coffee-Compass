@@ -9,6 +9,7 @@ import { StoreContext } from "../../store/store-context";
 import coffeeStoreData from "../../data/coffee-stores.json";
 import { fetchCoffeeStores } from "../../lib/coffee-store";
 import { isEmpty } from "@/utils";
+import useSWR from "swr";
 
 import styles from "../../styles/coffee-store.module.css";
 
@@ -58,11 +59,26 @@ const coffeeStore = (initialProps) => {
 
   const [votingCount, setVotingCount] = useState(1);  // we need to use previous value from airtable
 
+  const fetcher = (url) => fetch(url).then((res) => res.json());    // we can include this in util accordingly
+  const { data, err, isLoading } = useSWR(`/api/getCoffeeStoreById?id=${id}`, fetcher);
+
+  useEffect(() => {
+    if (data && data.length > 0) {
+      console.log("data from SWR", data);
+      setCoffeeStore(data[0]);
+      setVotingCount(data[0].voting);
+    }
+  },[data]);
+
   const handleUpvoteButton = () => {
     console.log("upvote handling happens here");
     let count= votingCount + 1;
     setVotingCount(count);
   };
+
+  if (err) {
+    return <div>Something went wrong retrieving coffee store page</div>;
+  }
 
   const {
     state: { coffeeStores },
