@@ -49,17 +49,17 @@ const coffeeStore = (initialProps) => {
 
   const [coffeeStore, setCoffeeStore] = useState(
     initialProps.coffeeStore || {}
-  );;
+  );
 
-  if (router.isFallback) {
-    return <div>Loading State</div>;
-  }
+  const {
+    state: { coffeeStores },
+  } = useContext(StoreContext);
 
   const {
     name = "",
     address = "",
     neighbourhood = "",
-    imgUrl = "",
+    imgURL = "",
   } = coffeeStore;
 
   const [votingCount, setVotingCount] = useState(0);  // we need to use previous value from airtable
@@ -74,6 +74,10 @@ const coffeeStore = (initialProps) => {
       setVotingCount(data[0].voting);
     }
   },[data]);
+
+  if (router.isFallback) {
+    return <div>Loading State</div>;
+  }
 
   const handleUpvoteButton = async () => {
     // console.log("upvote handling happens here");
@@ -105,10 +109,6 @@ const coffeeStore = (initialProps) => {
   if (err) {
     return <div>Something went wrong retrieving coffee store page</div>;
   }
-
-  const {
-    state: { coffeeStores },
-  } = useContext(StoreContext);
 
   const handleCreateCoffeeStore = async (coffeeStore) => {
     try {
@@ -173,7 +173,7 @@ const coffeeStore = (initialProps) => {
           </div>
           <Image
             src={
-              coffeeStore.imgURL ||
+              imgURL || // coffeeStore.imgURL
               "https://images.unsplash.com/photo-1453614512568-c4024d13c247?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
             }
             width={600}
@@ -189,10 +189,10 @@ const coffeeStore = (initialProps) => {
               <p className={styles.text}>{address}</p>
             </div>
           )}
-          {neighborhood && (
+          {neighbourhood && (
             <div className={styles.iconWrapper}>
               <Image src="/static/icons/near.svg" width="24" height="24" alt="near icon" />
-              <p className={styles.text}>{neighborhood}</p>
+              <p className={styles.text}>{neighbourhood}</p>
             </div>
           )}
           <div className={styles.iconWrapper}>
