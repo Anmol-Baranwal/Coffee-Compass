@@ -70,10 +70,31 @@ const coffeeStore = (initialProps) => {
     }
   },[data]);
 
-  const handleUpvoteButton = () => {
+  const handleUpvoteButton = async () => {
     console.log("upvote handling happens here");
-    let count= votingCount + 1;
-    setVotingCount(count);
+
+    try {
+      const response = await fetch("/api/favouriteCoffeeStore", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+        }),
+      });
+
+      const dbCoffeeStore = await response.json();
+      console.log({ 'airtable db': dbCoffeeStore });
+
+      if(dbCoffeeStore && dbCoffeeStore.length > 0){
+        let count= votingCount + 1;
+        setVotingCount(count);
+      }
+
+    } catch (err) {
+      console.error("Error in upvoting coffee store", err);
+    }
   };
 
   if (err) {
