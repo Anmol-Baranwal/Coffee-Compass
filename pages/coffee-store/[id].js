@@ -15,12 +15,12 @@ import styles from "../../styles/coffee-store.module.css";
 export async function getStaticProps(staticProps) {
   const params = staticProps.params; // we can also destructure params in above parameter directly
   const coffeeStores = await fetchCoffeeStores();
-  const findCoffeeStoreById= coffeeStores.find((coffeeStore) => {
+  const coffeeStoreFromContext= coffeeStores.find((coffeeStore) => {
     return coffeeStore.id.toString() === params.id; // dynamic id
   });
   return {
     props: {
-      coffeeStore: findCoffeeStoreById ? findCoffeeStoreById : {}
+      coffeeStore: coffeeStoreFromContext ? coffeeStoreFromContext : {}
     },
   };
 }
@@ -88,14 +88,21 @@ const coffeeStore = (initialProps) => {
   useEffect(() => {
     if(isEmpty(initialProps.coffeeStore)) {
       if (coffeeStores.length > 0) {
-        const findCoffeeStoreById = coffeeStores.find((coffeeStore) => {
+        const coffeeStoreFromContext = coffeeStores.find((coffeeStore) => {
           return coffeeStore.id.toString() === id; //dynamic id
         });
-        setCoffeeStore(findCoffeeStoreById);
-        handleCreateCoffeeStore(findCoffeeStoreById);
+
+        if(coffeeStoreFromContext){
+          setCoffeeStore(coffeeStoreFromContext);
+          handleCreateCoffeeStore(coffeeStoreFromContext);
+        }
+        else {
+          // static generated route stores
+          handleCreateCoffeeStore(initialProps.coffeeStore);
+        }
       }
     }
-  }, [id]);
+  }, [id, initialProps, initialProps.coffeeStore]);
 
   const handleUpvoteButton = () => {
     console.log("upvote handling happens here");

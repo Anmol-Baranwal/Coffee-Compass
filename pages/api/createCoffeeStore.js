@@ -12,7 +12,7 @@ const createCoffeeStore = async (req, res) => {
         // no sense of finding a coffee store without id
         const findCoffeeStoreRecords = await table
           .select({
-            filterByFormula: `id=${id}`,
+            filterByFormula: `id="${id}"`,
           })
           .firstPage();
 
