@@ -1,5 +1,6 @@
 // import React from "react";
 import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
@@ -7,6 +8,7 @@ import cls from "classnames";
 import { StoreContext } from "../../store/store-context";
 import coffeeStoreData from "../../data/coffee-stores.json";
 import { fetchCoffeeStores } from "../../lib/coffee-store";
+import { isEmpty } from "@/utils";
 
 import styles from "../../styles/coffee-store.module.css";
 
@@ -39,17 +41,64 @@ export async function getStaticPaths() {
   };
 }
 
-const coffeeStore = (props) => {
+const coffeeStore = (initialProps) => {
   const router = useRouter();
+
+  const id = router.query.id;
+
+  const [coffeeStore, setCoffeeStore] = useState(
+    initialProps.coffeeStore || {}
+  );;
 
   if (router.isFallback) {
     return <div>Loading State</div>;
   }
 
-  const { address, name, neighborhood, imgURL } = props.coffeeStore;
+  const { address, name, neighborhood, imgURL } = coffeeStore;
+
+  const {
+    state: { coffeeStores },
+  } = useContext(StoreContext);
+
+  const handleCreateCoffeeStore = async (coffeeStore) => {
+    try {
+      const { id, name, voting, imgURL, neighbourhood, address } = coffeeStore;
+      const response = await fetch("/api/createCoffeeStore", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          voting: 0,
+          imgURL,
+          neighbourhood: neighbourhood || "",
+          address: address || "",
+        }),
+      });
+
+      const dbCoffeeStore = await response.json();
+      console.log({ dbCoffeeStore });
+    } catch (err) {
+      console.error("Error in creating coffee store", err);
+    }
+  };
+
+  useEffect(() => {
+    if(isEmpty(initialProps.coffeeStore)) {
+      if (coffeeStores.length > 0) {
+        const findCoffeeStoreById = coffeeStores.find((coffeeStore) => {
+          return coffeeStore.id.toString() === id; //dynamic id
+        });
+        setCoffeeStore(findCoffeeStoreById);
+        handleCreateCoffeeStore(findCoffeeStoreById);
+      }
+    }
+  }, [id]);
 
   const handleUpvoteButton = () => {
-    console.log("what");
+    console.log("upvote handling happens here");
   };
 
   // <div>Coffee Page nested routing {router.query.id}</div>
@@ -60,7 +109,8 @@ const coffeeStore = (props) => {
   return (
     <div className={styles.layout}>
       <Head>
-        <title>{name}</title>
+      <title>{name}</title>
+        <meta name="description" content={`${name} coffee store`} />
       </Head>
       <div className={styles.container}>
         <div className={styles.col1}>
