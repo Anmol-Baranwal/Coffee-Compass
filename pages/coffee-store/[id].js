@@ -56,6 +56,14 @@ const coffeeStore = (initialProps) => {
 
   const { address, name, neighborhood, imgURL } = coffeeStore;
 
+  const [votingCount, setVotingCount] = useState(1);  // we need to use previous value from airtable
+
+  const handleUpvoteButton = () => {
+    console.log("upvote handling happens here");
+    let count= votingCount + 1;
+    setVotingCount(count);
+  };
+
   const {
     state: { coffeeStores },
   } = useContext(StoreContext);
@@ -79,14 +87,14 @@ const coffeeStore = (initialProps) => {
       });
 
       const dbCoffeeStore = await response.json();
-      console.log({ dbCoffeeStore });
+      console.log({ 'airtable db': dbCoffeeStore });
     } catch (err) {
       console.error("Error in creating coffee store", err);
     }
   };
 
   useEffect(() => {
-    if(isEmpty(initialProps.coffeeStore)) {
+    if(isEmpty(initialProps.coffeeStore)) { 
       if (coffeeStores.length > 0) {
         const coffeeStoreFromContext = coffeeStores.find((coffeeStore) => {
           return coffeeStore.id.toString() === id; //dynamic id
@@ -103,10 +111,6 @@ const coffeeStore = (initialProps) => {
       }
     }
   }, [id, initialProps, initialProps.coffeeStore]);
-
-  const handleUpvoteButton = () => {
-    console.log("upvote handling happens here");
-  };
 
   // <div>Coffee Page nested routing {router.query.id}</div>
   // <Link href="/coffee-store/dynamic">
@@ -155,7 +159,7 @@ const coffeeStore = (initialProps) => {
           )}
           <div className={styles.iconWrapper}>
             <Image src="/static/icons/star.svg" width="24" height="24" />
-            <p className={styles.text}>1</p>
+            <p className={styles.text}>{votingCount}</p>
           </div>
           <button className={styles.upvoteButton} onClick={handleUpvoteButton}>
             Up vote!
