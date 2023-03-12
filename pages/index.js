@@ -54,7 +54,7 @@ export default function Home(props) {
           const response = await fetch(
             `/api/getCoffeeStoresByLocation?latLong=${latLong}&limit=30`
           );
-          console.log({ fetchCoffeeStores });
+          // console.log({ fetchCoffeeStores });
           // set coffee store
           // setCoffeeStores(fetchCoffeeStores);
           const coffeeStores = await response.json();
@@ -82,7 +82,7 @@ export default function Home(props) {
   //   },[latLong])
 
   const handleOnBannerBtnClick = () => {
-    console.log("banner btn clicked");
+    // console.log("banner btn clicked");
     handleTrackLocation();
   };
 

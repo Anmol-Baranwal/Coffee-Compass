@@ -71,7 +71,7 @@ const coffeeStore = (initialProps) => {
   },[data]);
 
   const handleUpvoteButton = async () => {
-    console.log("upvote handling happens here");
+    // console.log("upvote handling happens here");
 
     try {
       const response = await fetch("/api/favouriteCoffeeStore", {

@@ -1,6 +1,6 @@
 import {table, getMinifiedRecords} from "@/lib/airtable"
 
-console.log(table);
+// console.log(table);
 
 const createCoffeeStore = async (req, res) => {
   if (req.method === "POST") {
