@@ -55,7 +55,12 @@ const coffeeStore = (initialProps) => {
     return <div>Loading State</div>;
   }
 
-  const { address, name, neighborhood, imgURL } = coffeeStore;
+  const {
+    name = "",
+    address = "",
+    neighbourhood = "",
+    imgUrl = "",
+  } = coffeeStore;
 
   const [votingCount, setVotingCount] = useState(0);  // we need to use previous value from airtable
 
@@ -180,18 +185,18 @@ const coffeeStore = (initialProps) => {
         <div className={cls("glass", styles.col2)}>
           {address && (     /* only display when adress is not empty */
             <div className={styles.iconWrapper}>
-              <Image src="/static/icons/places.svg" width="24" height="24" />
+              <Image src="/static/icons/places.svg" width="24" height="24" alt="places icon" />
               <p className={styles.text}>{address}</p>
             </div>
           )}
           {neighborhood && (
             <div className={styles.iconWrapper}>
-              <Image src="/static/icons/near.svg" width="24" height="24" />
+              <Image src="/static/icons/near.svg" width="24" height="24" alt="near icon" />
               <p className={styles.text}>{neighborhood}</p>
             </div>
           )}
           <div className={styles.iconWrapper}>
-            <Image src="/static/icons/star.svg" width="24" height="24" />
+            <Image src="/static/icons/star.svg" width="24" height="24" alt="star icon" />
             <p className={styles.text}>{votingCount}</p>
           </div>
           <button className={styles.upvoteButton} onClick={handleUpvoteButton}>
