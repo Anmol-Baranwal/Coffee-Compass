@@ -1,7 +1,6 @@
 // import React from "react";
 import Head from "next/head";
 import Image from "next/image";
-// import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 
 import Banner from "@/components/banner";
@@ -31,7 +30,7 @@ export async function getStaticProps() {
 }
 
 export default function Home(props) {
-  console.log("props", props);
+  // console.log("props", props);
 
   // handleTrackLocation();
   const { handleTrackLocation, locationErrorMsg, isFindingLocation } =

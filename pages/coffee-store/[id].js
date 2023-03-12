@@ -57,14 +57,14 @@ const coffeeStore = (initialProps) => {
 
   const { address, name, neighborhood, imgURL } = coffeeStore;
 
-  const [votingCount, setVotingCount] = useState(1);  // we need to use previous value from airtable
+  const [votingCount, setVotingCount] = useState(0);  // we need to use previous value from airtable
 
   const fetcher = (url) => fetch(url).then((res) => res.json());    // we can include this in util accordingly
   const { data, err, isLoading } = useSWR(`/api/getCoffeeStoreById?id=${id}`, fetcher);
 
   useEffect(() => {
     if (data && data.length > 0) {
-      console.log("data from SWR", data);
+      // console.log("data from SWR", data);
       setCoffeeStore(data[0]);
       setVotingCount(data[0].voting);
     }
@@ -85,7 +85,7 @@ const coffeeStore = (initialProps) => {
       });
 
       const dbCoffeeStore = await response.json();
-      console.log({ 'airtable db': dbCoffeeStore });
+      // console.log({ 'airtable db': dbCoffeeStore });
 
       if(dbCoffeeStore && dbCoffeeStore.length > 0){
         let count= votingCount + 1;
@@ -124,7 +124,7 @@ const coffeeStore = (initialProps) => {
       });
 
       const dbCoffeeStore = await response.json();
-      console.log({ 'airtable db': dbCoffeeStore });
+      // console.log({ 'airtable db': dbCoffeeStore });
     } catch (err) {
       console.error("Error in creating coffee store", err);
     }
@@ -149,11 +149,7 @@ const coffeeStore = (initialProps) => {
     }
   }, [id, initialProps, initialProps.coffeeStore]);
 
-  // <div>Coffee Page nested routing {router.query.id}</div>
-  // <Link href="/coffee-store/dynamic">
-  // <>Go to dynamic page</>
-  // </Link>{" "}
-  // it doesnt refresh the page like anchor tag
+  // Link doesnt refresh the page like anchor tag
   return (
     <div className={styles.layout}>
       <Head>
