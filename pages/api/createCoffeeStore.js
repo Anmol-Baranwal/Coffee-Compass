@@ -1,4 +1,9 @@
-import { table, getMinifiedRecords, findRecordByFilter } from "@/lib/airtable";
+import {
+  table,
+  getMinifiedRecords,
+  findRecordByFilter,
+} from "../../lib/airtable";
+// or: import { table, getMinifiedRecords, findRecordByFilter } from "@/lib/airtable";
 
 // console.log(table);
 
@@ -34,8 +39,8 @@ const createCoffeeStore = async (req, res) => {
             ]);
 
             const records = getMinifiedRecords(createRecords);
-
-            res.json({ message: "create a record", records: createRecords });
+            res.json(records);
+            // res.json({ message: "create a record", records: createRecords });
           } else {
             res.status(400);
             res.json({ message: "ID or Name is missing !!" });
@@ -43,7 +48,7 @@ const createCoffeeStore = async (req, res) => {
         }
       } else {
         res.status(400);
-        res.json({ message: "ID or Name is missing !!" });
+        res.json({ message: "ID is missing !!" });
       }
     } catch (err) {
       console.log("Error creating or finding store", err);
@@ -55,4 +60,4 @@ const createCoffeeStore = async (req, res) => {
 
 export default createCoffeeStore;
 
-// by default every serverless function is a get request
+//Note:  by default every serverless function is a get request

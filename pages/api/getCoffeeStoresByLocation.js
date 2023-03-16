@@ -1,7 +1,6 @@
 import { fetchCoffeeStores } from "@/lib/coffee-store";
 
 const getCoffeeStoresByLocation = async (req, res) => {
-    
     // configure latlong & limit
     try{
         const {latLong, limit} = req.query;
@@ -14,8 +13,6 @@ const getCoffeeStoresByLocation = async (req, res) => {
         res.status(500);
         res.json({message: "Oh! Something unexpected happened", err});
     }
-    
-
-}
+};
 
 export default getCoffeeStoresByLocation;

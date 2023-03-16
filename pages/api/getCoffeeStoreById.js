@@ -1,6 +1,6 @@
-import {table, getMinifiedRecords, findRecordByFilter} from "@/lib/airtable"
+import {findRecordByFilter} from "@/lib/airtable"
 
-const getCoffeeStoresById = async (req, res) => {
+const getCoffeeStoreById = async (req, res) => {
   const { id } = req.query;
 
   try {
@@ -22,4 +22,4 @@ const getCoffeeStoresById = async (req, res) => {
   }
 };
 
-export default getCoffeeStoresById;
+export default getCoffeeStoreById;
