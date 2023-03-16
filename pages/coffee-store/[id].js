@@ -83,7 +83,7 @@ const coffeeStore = (initialProps) => {
     // console.log("upvote handling happens here");
 
     try {
-      const response = await fetch("/api/favouriteCoffeeStore", {
+      const response = await fetch("/api/favouriteCoffeeStoreById", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
