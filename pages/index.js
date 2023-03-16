@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
@@ -19,11 +19,25 @@ export async function getStaticProps() {
   // const data= fetch(coffeeStores)
   // this code runs on build time, so it is recommended to not
   // invoke internal api req since server hasn't even started yet, so direct call
+  if (
+    !process.env.NEXT_PUBLIC_FOURSQUARE_PLACES_API_KEY &&
+    !process.env.AIRTABLE_WEB_API_KEY &&
+    !process.env.AIRTABLE_BASE_KEY &&
+    !process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_API_KEY
+  ) {
+    return {
+      redirect: {
+        destination: "/problem",    // problem route page will show that env variables are not configured
+        permanent: false,
+      },
+    };
+  }
   const coffeeStores = await fetchCoffeeStores();
 
   return {
     props: {
       coffeeStores, // both data and value
+      // will be passed to the page component as props
       // coffeeStores: data.results,
     },
   };
@@ -60,7 +74,7 @@ export default function Home(props) {
           const coffeeStores = await response.json();
           dispatch({
             type: ACTION_TYPES.SET_COFFEE_STORES,
-            payload: { coffeeStores },
+            payload: { coffeeStores, },
           });
           setCoffeeStoresError("");
         } catch (error) {
