@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
-import { UseRouter } from "next/router";
-import { UseContext, UseEffect, UseState } from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
@@ -9,7 +10,7 @@ import { StoreContext } from "../../store/store-context";
 import coffeeStoreData from "../../data/coffee-stores.json";
 import { fetchCoffeeStores } from "../../lib/coffee-store";
 import { isEmpty, fetcher } from "../../utils";
-import UseSWR from "swr";
+import useSWR from "swr";
 
 import styles from "../../styles/coffee-store.module.css";
 
@@ -45,17 +46,17 @@ export async function getStaticPaths() {
 const coffeeStore = (initialProps) => {
   // const { UseEffect, UseState, UseContext } = React;
 
-  const router = UseRouter();
+  const router = useRouter();
 
   const id = router.query.id;
 
-  const [coffeeStore, setCoffeeStore] = UseState(
+  const [coffeeStore, setCoffeeStore] = useState(
     initialProps.coffeeStore || {}
   );
 
   const {
     state: { coffeeStores },
-  } = UseContext(StoreContext);
+  } = useContext(StoreContext);
 
   const handleCreateCoffeeStore = async (coffeeStore) => {
     try {
@@ -82,7 +83,7 @@ const coffeeStore = (initialProps) => {
     }
   };
 
-  UseEffect(() => {
+  useEffect(() => {
     if (isEmpty(initialProps.coffeeStore)) {
       if (coffeeStores.length > 0) {
         const coffeeStoreFromContext = coffeeStores.find((coffeeStore) => {
@@ -98,7 +99,7 @@ const coffeeStore = (initialProps) => {
       // static generated route stores
       handleCreateCoffeeStore(initialProps.coffeeStore);
     }
-  }, [id, initialProps, initialProps.coffeeStore]);
+  }, [id, initialProps, initialProps.coffeeStore, coffeeStores]);
 
   const {
     name = "",
@@ -107,15 +108,15 @@ const coffeeStore = (initialProps) => {
     imgURL = "",
   } = coffeeStore;
 
-  const [votingCount, setVotingCount] = UseState(0); // we need to use previous value from airtable
+  const [votingCount, setVotingCount] = useState(0); // we need to use previous value from airtable
 
   // we can include fetcher here or import from util accordingly
-  const { data, err } = UseSWR(     // {data, err, isLoading}
+  const { data, err } = useSWR(     // {data, err, isLoading}
     `/api/getCoffeeStoreById?id=${id}`,
     fetcher
   );
 
-  UseEffect(() => {
+  useEffect(() => {
     if (data && data.length > 0) {
       // console.log("data from SWR", data);
       setCoffeeStore(data[0]);
