@@ -15,7 +15,7 @@ import { ACTION_TYPES, StoreContext } from "../store/store-context";
 
 // const inter = Inter({ subsets: ["latin"] });
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   // const data= fetch(coffeeStores)
   // this code runs on build time, so it is recommended to not
   // invoke internal api req since server hasn't even started yet, so direct call
@@ -121,7 +121,7 @@ export default function Home(props) {
           <div className={styles.sectionWrapper}>
             <h2 className={styles.heading2}>Stores near me</h2>
             <div className={styles.cardLayout}>
-              {props.coffeeStores.map((coffeeStore) => {
+              {coffeeStores.map((coffeeStore) => {
                 return (
                   <Card
                     key={coffeeStore.id}
