@@ -1,9 +1,6 @@
 .container {
     display: grid;
-    padding-top: 1.75rem /* 28px */;
-    padding-bottom: 1.75rem /* 28px */;
-    padding-left: 1.75rem /* 12px */;
-    padding-right: 0.75rem /* 12px */;
+    margin: 3rem;
   }
   
   .layout {
@@ -15,38 +12,44 @@
   }
   
   .backToHomeLink {
-    margin-top: 6rem /* 96px */;
-    font-size: 1.125rem /* 18px */;
-    line-height: 1.75rem /* 28px */;
-    margin-bottom: 0.5rem /* 8px */;
+    margin-top: 4rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin-bottom: 1.5rem;
     font-weight: 700;
+    letter-spacing: .1rem;
+    color: var(--primary-300);
+  }
+
+  .backToHomeLink:hover{
+    letter-spacing: .12rem;
+    color: var(--primary-200);
+    transition: .3s ease-in-out;
   }
   
   .nameWrapper {
-    margin-bottom: 1rem /* 16px */;
-    margin-top: 1rem /* 16px */;
+    margin-bottom: 1.8rem;
+    margin-top: 1rem;
   }
   
   .name {
-    color: var(--text-white-100);
-    font-size: 2.25rem /* 36px */;
-    line-height: 2.5rem /* 40px */;
+    color: var(--accent-100);
+    font-size: 2.25rem;
+    line-height: 2.5rem;
     text-overflow: ellipsis;
     white-space: normal;
     overflow: hidden;
+    letter-spacing: .08rem;
   }
   
   .storeImgWrapper {
-    padding-top: 1rem /* 16px */;
-    padding-bottom: 1rem /* 16px */;
+    border: 1px solid var(--primary-300);
+    border-radius: .9rem;
   }
-  
+
   .storeImg {
-    box-shadow: var(0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 #0000),
-      0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 #0000,
-      0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  
-    border-radius: 0.75rem /* 12px */;
+    box-shadow: 5px 10px 9px -4px rgba(255, 255, 255, .1);
+    border-radius: 0.75rem;
     max-width: 100%;
     height: auto;
     vertical-align: middle;
@@ -54,50 +57,54 @@
   }
   
   .col2 {
-    border-radius: 1rem /* 16px */;
-    padding: 1rem /* 16px */;
+    border-radius: 1rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    margin-left: 0.5rem /* 8px */;
+    margin-left: 0.5rem;
     align-self: center;
-    margin-top: 4rem /* 64px */;
+    margin-top: 4rem;
     color: rgba(55, 59, 100, 1);
+    padding-left: 2rem;
   }
   
   .iconWrapper {
     display: flex;
-    margin-bottom: 1rem /* 16px */;
+    margin-bottom: 1rem;
+  }
+
+  .iconWrapper:nth-child(1){
+    margin-top: .8rem;
   }
   
   .text {
-    padding-left: 0.5rem /* 8px */;
-    font-size: 1.5rem /* 24px */;
-    line-height: 2rem /* 32px */;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
     margin: 0;
     font-weight: 700;
+    color: var(--bg-100);
   }
   
   .upvoteButton {
     width: fit-content;
-    color: var(--text-white-100);
-    margin-top: 1rem /* 16px */;
-    margin-bottom: 1rem /* 16px */;
-    padding-left: 0.5rem /* 8px */;
-    padding-right: 0.5rem /* 8px */;
-    padding-top: 0.5rem /* 8px */;
-    padding-bottom: 0.5rem /* 8px */;
-  
-    background-color: var(--text-purple-dark);
+    color: var(--text-black);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: .5rem;
+    background-color: var(--bg-100);
     cursor: pointer;
     color: white;
-    outline: 0;
-    border: 0px;
-  
+    outline: 0;  
+    border: 1px solid var(--bg-100);
     font-size: 1rem;
   }
   
-  .upvoteButton:hover {
-    background-color: var(--text-purple);
+  /* if you want to change button on hover of col2 use: .col2:hover > .upvoteButton */
+  .upvoteButton:hover {    
+    background-color: var(--primary-200);
+    color: var(--bg-100);
+    transition: .3s ease-in-out;
   }
   
   @media (min-width: 1024px) {
@@ -106,20 +113,21 @@
     }
   
     .layout {
-      padding-left: 2.5rem /* 40px */;
-      padding-right: 2.5rem /* 40px */;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
       height: 100vh;
     }
   
     .col2 {
       width: 75%;
+      margin-top: 12rem;
     }
   }
   
   @media (min-width: 768px) {
     .layout {
-      padding-left: 2.5rem /* 40px */;
-      padding-right: 2.5rem /* 40px */;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
     }
   }
   
@@ -129,7 +137,7 @@
     }
   
     .layout {
-      padding-left: 1rem /* 16px */;
-      padding-right: 1rem /* 16px */;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }

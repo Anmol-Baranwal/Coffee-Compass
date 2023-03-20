@@ -1,16 +1,14 @@
-/** Mobile first development **/
-
 .container {
-  margin-bottom: 14rem /* 224px */;
+  margin-bottom: 14rem;
 }
 
 .main {
-  margin-top: 2.5rem /* 40px */;
+  margin-top: 2.5rem;
   margin-left: auto;
   margin-right: auto;
-  max-width: 72rem /* 1152px */;
-  padding-left: 1rem /* 16px */;
-  padding-right: 1rem /* 16px */;
+  max-width: 72rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   margin-bottom: 80px;
 }
 
@@ -32,13 +30,16 @@
 }
 
 .sectionWrapper {
-  margin-top: 3.5rem;
+  margin-top: 5.5rem;
+}
+
+.sectionWrapper > :nth-child(1){
+  margin-top: -1rem;
 }
 
 .heading2{
   font-size: 2.5rem;
   line-height: 2;
-  padding-bottom: 2rem;
   margin-bottom: 2rem;
   color: var(--text-white-100);
 }
@@ -53,14 +54,14 @@
 
 @media (min-width: 640px) {
   .container {
-    padding-left: 1rem /* 16px */;
-    padding-right: 1rem /* 16px */;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .main {
-    margin-top: 3rem /* 48px */;
-    padding-left: 1.5rem /* 24px */;
-    padding-right: 1.5rem /* 24px */;
+    margin-top: 3rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .cardLayout{
@@ -70,12 +71,12 @@
 
 @media (min-width: 768px) {
   .container {
-    padding-left: 2.5rem /* 40px */;
-    padding-right: 2.5rem /* 40px */;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 
   .main {
-    margin-top: 4rem /* 64px */;
+    margin-top: 4rem;
   }
 
   .heroImage{
@@ -89,13 +90,13 @@
 
 @media (min-width: 1024px) {
   .container {
-    padding-left: 2.5rem /* 40px */;
-    padding-right: 2.5rem /* 40px */;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
   .main {
-    margin-top: 5rem /* 80px */;
-    padding-left: 2rem /* 32px */;
-    padding-right: 2rem /* 32px */;
+    margin-top: 5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .heroImage{
@@ -109,6 +110,6 @@
 
 @media (min-width: 1280px) {
   .main {
-    margin-top: 7rem /* 112px */;
+    margin-top: 7rem;
   }
 }
