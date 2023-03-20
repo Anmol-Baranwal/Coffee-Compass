@@ -111,7 +111,8 @@ const coffeeStore = (initialProps) => {
   const [votingCount, setVotingCount] = useState(0); // we need to use previous value from airtable
 
   // we can include fetcher here or import from util accordingly
-  const { data, err } = useSWR(     // {data, err, isLoading}
+  const { data, err } = useSWR(
+    // {data, err, isLoading}
     `/api/getCoffeeStoreById?id=${id}`,
     fetcher
   );
@@ -175,16 +176,18 @@ const coffeeStore = (initialProps) => {
           <div className={styles.nameWrapper}>
             <h1 className={styles.name}>{name}</h1>
           </div>
-          <Image
-            src={
-              imgURL || // coffeeStore.imgURL
-              "https://images.unsplash.com/photo-1453614512568-c4024d13c247?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
-            }
-            width={600}
-            height={360}
-            className={styles.storeImg}
-            alt={name}
-          />
+          <div className={styles.storeImgWrapper}>
+            <Image
+              src={
+                imgURL || // coffeeStore.imgURL
+                "https://images.unsplash.com/photo-1453614512568-c4024d13c247?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
+              }
+              width={600}
+              height={360}
+              className={styles.storeImg}
+              alt={name}
+            />
+          </div>
         </div>
         <div className={cls("glass", styles.col2)}>
           {address /* only display when adress is not empty */ && (
