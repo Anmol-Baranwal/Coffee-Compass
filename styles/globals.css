@@ -87,16 +87,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-
-    background: url("/static/bg2.jpg");
-
-    /* background: no-repeat 50% cover ; */
+    background-color: var(--bg-100);
 }
 
 a {
@@ -138,20 +129,27 @@ button:focus {
 }
 
 .glass {
-  background: hsla(0, 0%, 100%, 0.4);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--primary-200);
   backdrop-filter: blur(10px);
-  border: 1px solid hsla(0, 0%, 100%, 0.2);
 }
 
 .glass:hover {
-  background: hsla(0, 0%, 100%, 0.7);
-  border: 1px solid #fff;
+  background: var(--accent-100);
+  box-shadow: 5px 10px 9px -4px rgb(245,245,245, .3);
+  transition: .5s ease-in-out;
 }
 
 :root {
-  --text-purple: rgba(67, 56, 202, 1);
-  --text-purple-dark: rgba(79, 70, 229, 1);
   --text-black: rgba(17, 24, 39, 1);
-  --text-white-100: rgba(229, 231, 235, 1);
+
+  --primary-100:#FF6600;
+  --primary-200:#ff983f;
+  --primary-300:#ffffa1;
+  --accent-100:#F5F5F5;
+  --accent-200:#929292;
+  /* --text-100:#FFFFFF; */
+  /* --text-200:#e0e0e0; */
+  --bg-100:#1D1F21;
+  --bg-200:#2c2e30;
+  --bg-300:#444648;
 }
