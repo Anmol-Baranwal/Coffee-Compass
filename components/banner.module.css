@@ -9,6 +9,8 @@
     font-weight: 800;  
     font-size: 3rem;
     line-height: 1;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
   }
   
   .title1 {
@@ -26,6 +28,8 @@
     font-size: 1.5rem /* 24px */;
     line-height: 2rem /* 32px */;
     color: var(--primary-300);
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
   }
   
   .buttonWrapper {
@@ -42,6 +46,9 @@
     font-size: 1.125rem;
     line-height: 1.75rem;
     padding: 2rem 2.5rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    letter-spacing: .05rem;
   }
   
   .button:hover {

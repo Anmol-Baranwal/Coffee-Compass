@@ -155,4 +155,61 @@ button:focus {
   /* --text-100:#FFFFFF; */
   /* --text-200:#e0e0e0; */
   /* --bg-300:#444648; */
+
+  
+
+
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../public/fonts/Poppins-Light.ttf') format('truetype'),  
+       url('../public/fonts/Poppins-Light.ttf') format('woff');
+  font-weight: 100; 
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../public/fonts/Poppins-Regular.ttf') format('truetype'),
+       url('../public/fonts/Poppins-Regular.ttf') format('woff');
+  font-weight: 200; 
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../public/fonts/Poppins-Medium.ttf') format('truetype'),
+       url('../public/fonts/Poppins-Medium.ttf') format('woff');
+  font-weight: 400; 
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../public/fonts/Poppins-SemiBold.ttf') format('truetype'),
+       url('../public/fonts/Poppins-SemiBold.ttf') format('woff');
+  font-weight: 600; 
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../public/fonts/Poppins-ExtraBold.ttf') format('truetype'),
+       url('../public/fonts/Poppins-ExtraBold.ttf') format('woff');
+  font-weight: 700; 
+}
+
+::-webkit-scrollbar {
+  width: .45rem;
+  background-color: #909090;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #464343;
+  border-radius: 35px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #363535;
+}
+
+::-webkit-scrollbar-track {
+  background: #909090;
 }

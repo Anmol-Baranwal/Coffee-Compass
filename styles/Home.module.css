@@ -42,6 +42,9 @@
   line-height: 2;
   margin-bottom: 2rem;
   color: var(--text-white-100);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  letter-spacing: .1rem;
 }
 
 /** Breakpoints:

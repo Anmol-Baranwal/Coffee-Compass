@@ -19,6 +19,9 @@
     font-weight: 700;
     letter-spacing: .1rem;
     color: var(--primary-300);
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    letter-spacing: .08rem;
   }
 
   .backToHomeLink:hover{
@@ -39,6 +42,9 @@
     text-overflow: ellipsis;
     white-space: normal;
     overflow: hidden;
+    letter-spacing: .08rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
     letter-spacing: .08rem;
   }
   
@@ -82,8 +88,10 @@
     font-size: 1.5rem;
     line-height: 2rem;
     margin: 0;
-    font-weight: 700;
     color: var(--bg-100);
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    letter-spacing: .05rem;
   }
   
   .upvoteButton {
@@ -91,13 +99,16 @@
     color: var(--text-black);
     margin-top: 1rem;
     margin-bottom: 1rem;
-    padding: .5rem;
+    padding: .5rem 1rem;
     background-color: var(--bg-100);
     cursor: pointer;
     color: white;
     outline: 0;  
     border: 1px solid var(--bg-100);
     font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    border-radius: 4px;
   }
   
   /* if you want to change button on hover of col2 use: .col2:hover > .upvoteButton */
