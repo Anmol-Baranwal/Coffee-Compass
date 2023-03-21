@@ -17,7 +17,6 @@
   }
   
   .title2 {
-    display: block;
     color: var(--accent-100);
   }
   
@@ -47,7 +46,9 @@
   
   .button:hover {
     transition: .3s ease-in-out;
-    background-color: var(--accent-300);
+    background-color: var(--primary-300);
+    color: #000;
+    border: 3px solid var(--primary-300);
   }
   
   /** 
@@ -60,6 +61,10 @@
     2xl: min-width: 1536px; // 2 x extra large device
   **/
   
+  @media(min-width: 1024px) {
+    
+  }
+
   /** sm breakpoint **/
   @media (min-width: 640px) {
     .title {
@@ -111,6 +116,7 @@
     }
   
     .title2 {
+      display: block;
       padding-left: 0.5rem;
     }
   
