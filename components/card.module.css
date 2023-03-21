@@ -29,7 +29,7 @@
   }
   
   .cardImageWrapper > img {
-    color: var(--accent-100);
+    /* color: var(--accent-100); */
     border: 1px solid var(--bg-200);
     border-radius: .75rem;
   }

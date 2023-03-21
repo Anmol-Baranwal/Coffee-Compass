@@ -110,10 +110,11 @@ export default function Home(props) {
         {coffeeStoresError && <p>Something went wrong: {coffeeStoresError}</p>}
         <div className={styles.heroImage}>
           <Image
-            src="/static/hero-image3.png"
+            src="/static/hero-image.png"
             alt="hero image"
-            width={500}
-            height={300}
+            width={485}
+            height={250}
+            className={styles.heroImage}
           />
         </div>
 
