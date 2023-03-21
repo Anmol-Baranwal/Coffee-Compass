@@ -52,6 +52,12 @@
   2xl: min-width: 1536px;
 **/
 
+@media(max-width: 1024px) {
+  .heroImage{
+    display: none;
+  }
+}
+
 @media (min-width: 640px) {
   .container {
     padding-left: 1rem;
@@ -67,6 +73,7 @@
   .cardLayout{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  
 }
 
 @media (min-width: 768px) {
@@ -80,7 +87,8 @@
   }
 
   .heroImage{
-    right: 20%;
+    top: 3rem;
+    right: 20rem;
   }
 
   .cardLayout{
@@ -100,7 +108,7 @@
   }
 
   .heroImage{
-    right: 20%;
+    right: 12%;
   }
 
   .cardLayout{
