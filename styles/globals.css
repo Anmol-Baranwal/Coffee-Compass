@@ -1,9 +1,9 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: Poppins ,ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: Poppins, ui-monospace, Menlo, Monaco, "Cascadia Mono",
+    "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace",
+    "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -87,7 +87,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-    background-color: var(--bg-100);
+  background-color: var(--bg-100);
 }
 
 a {
@@ -135,18 +135,24 @@ button:focus {
 
 .glass:hover {
   background: var(--primary-300);
-  box-shadow: 5px 10px 9px -4px rgb(245,245,245, .3);
-  transition: .5s ease-in-out;
+  /* You can try all these box-shadow effects */
+  /* box-shadow: 5px 10px 9px -4px rgb(245,245,245, .3); */
+  /* box-shadow: rgba(245,245,245, 0.1) 0px 20px 25px -5px, rgba(245,245,245, 0.04) 0px 10px 10px -5px; */
+  /* box-shadow: rgba(245,245,245, 0.24) 0px 3px 8px; */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(245, 245, 245, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  transition: 0.5s ease-in-out;
 }
 
 :root {
   --text-black: rgba(17, 24, 39, 1);
 
-  --primary-200:#FE7624;
-  --primary-300: #FEBA91;
-  --accent-100:#F5F5F5;
-  --bg-100:#1D1F21;
-  --bg-200:#2c2e30;
+  --primary-200: #fe7624;
+  --primary-300: #feba91;
+  --accent-100: #f5f5f5;
+  --bg-100: #1d1f21;
+  --bg-200: #2c2e30;
   /* Unused Colors */
   /* --primary-100:#FF6600; */
   /* --primary-200:#ff983f; */
@@ -155,49 +161,45 @@ button:focus {
   /* --text-100:#FFFFFF; */
   /* --text-200:#e0e0e0; */
   /* --bg-300:#444648; */
-
-  
-
-
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('../public/fonts/Poppins-Light.ttf') format('truetype'),  
-       url('../public/fonts/Poppins-Light.ttf') format('woff');
-  font-weight: 100; 
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins-Light.ttf") format("truetype"),
+    url("../public/fonts/Poppins-Light.ttf") format("woff");
+  font-weight: 100;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('../public/fonts/Poppins-Regular.ttf') format('truetype'),
-       url('../public/fonts/Poppins-Regular.ttf') format('woff');
-  font-weight: 200; 
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins-Regular.ttf") format("truetype"),
+    url("../public/fonts/Poppins-Regular.ttf") format("woff");
+  font-weight: 200;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('../public/fonts/Poppins-Medium.ttf') format('truetype'),
-       url('../public/fonts/Poppins-Medium.ttf') format('woff');
-  font-weight: 400; 
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins-Medium.ttf") format("truetype"),
+    url("../public/fonts/Poppins-Medium.ttf") format("woff");
+  font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('../public/fonts/Poppins-SemiBold.ttf') format('truetype'),
-       url('../public/fonts/Poppins-SemiBold.ttf') format('woff');
-  font-weight: 600; 
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins-SemiBold.ttf") format("truetype"),
+    url("../public/fonts/Poppins-SemiBold.ttf") format("woff");
+  font-weight: 600;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('../public/fonts/Poppins-ExtraBold.ttf') format('truetype'),
-       url('../public/fonts/Poppins-ExtraBold.ttf') format('woff');
-  font-weight: 700; 
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins-ExtraBold.ttf") format("truetype"),
+    url("../public/fonts/Poppins-ExtraBold.ttf") format("woff");
+  font-weight: 700;
 }
 
 ::-webkit-scrollbar {
-  width: .45rem;
+  width: 0.45rem;
   background-color: #909090;
 }
 
