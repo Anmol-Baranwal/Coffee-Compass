@@ -13,8 +13,6 @@ import useTrackLocation from "../hooks/use-track-location";
 import { useEffect, useState, useContext } from "react";
 import { ACTION_TYPES, StoreContext } from "../store/store-context";
 
-// const inter = Inter({ subsets: ["latin"] });
-
 export async function getStaticProps(context) {
   // const data= fetch(coffeeStores)
   // this code runs on build time, so it is recommended to not
@@ -38,7 +36,6 @@ export async function getStaticProps(context) {
     props: {
       coffeeStores, // both data and value
       // will be passed to the page component as props
-      // coffeeStores: data.results,
     },
   };
 }
@@ -56,7 +53,7 @@ export default function Home(props) {
 
   const { coffeeStores, latLong } = state;
 
-  console.log({ latLong, locationErrorMsg }); // this will print key: value for both , easier syntax
+  // console.log({ latLong, locationErrorMsg }); // this will print key: value for both , easier syntax
 
   // const [coffeeStores, setCoffeeStores] = useState("");
 
@@ -115,6 +112,8 @@ export default function Home(props) {
             width={485}
             height={250}
             className={styles.heroImage}
+            loading="eager"
+            priority={true}
           />
         </div>
 
