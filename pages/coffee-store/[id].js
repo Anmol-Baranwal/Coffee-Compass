@@ -7,10 +7,10 @@ import Head from "next/head";
 import Image from "next/image";
 import cls from "classnames";
 import { StoreContext } from "../../store/store-context";
-import coffeeStoreData from "../../data/coffee-stores.json";
 import { fetchCoffeeStores } from "../../lib/coffee-store";
 import { isEmpty, fetcher } from "../../utils";
 import useSWR from "swr";
+// import coffeeStoreData from "../../data/coffee-stores.json";   // dummy data for initial project structure
 
 import styles from "../../styles/coffee-store.module.css";
 
@@ -60,7 +60,7 @@ const coffeeStore = (initialProps) => {
 
   const handleCreateCoffeeStore = async (coffeeStore) => {
     try {
-      const { id, name, voting, imgURL, neighbourhood, address } = coffeeStore;
+      const { id, name, voting, imgURL, locality, address } = coffeeStore;
       const response = await fetch("/api/createCoffeeStore", {
         method: "POST",
         headers: {
@@ -71,7 +71,7 @@ const coffeeStore = (initialProps) => {
           name,
           voting: 0,
           imgURL,
-          neighbourhood: neighbourhood || "",
+          locality: locality || "",
           address: address || "",
         }),
       });
@@ -104,7 +104,7 @@ const coffeeStore = (initialProps) => {
   const {
     name = "",
     address = "",
-    neighbourhood = "",
+    locality = "",
     imgURL = "",
   } = coffeeStore;
 
@@ -130,7 +130,7 @@ const coffeeStore = (initialProps) => {
   }
 
   const handleUpvoteButton = async () => {
-    console.log("upvote handling happens here");
+    // console.log("upvote handling happens here");
 
     try {
       const response = await fetch("/api/favouriteCoffeeStoreById", {
@@ -144,7 +144,7 @@ const coffeeStore = (initialProps) => {
       });
 
       const dbCoffeeStore = await response.json();
-      console.log({ "airtable db handleUpvoteButton": dbCoffeeStore });
+      // console.log({ "airtable db handleUpvoteButton": dbCoffeeStore });
 
       if (dbCoffeeStore && dbCoffeeStore.length > 0) {
         let count = votingCount + 1;
@@ -201,7 +201,7 @@ const coffeeStore = (initialProps) => {
               <p className={styles.text}>{address}</p>
             </div>
           )}
-          {neighbourhood && (
+          {locality && (
             <div className={styles.iconWrapper}>
               <Image
                 src="/static/icons/near.svg"
@@ -209,7 +209,7 @@ const coffeeStore = (initialProps) => {
                 height="24"
                 alt="near icon"
               />
-              <p className={styles.text}>{neighbourhood}</p>
+              <p className={styles.text}>{locality}</p>
             </div>
           )}
           <div className={styles.iconWrapper}>

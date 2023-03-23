@@ -9,7 +9,7 @@ import {
 
 const createCoffeeStore = async (req, res) => {
   if (req.method === "POST") {
-    const { id, name, neighbourhood, address, imgURL, voting } = req.body;
+    const { id, name, locality, address, imgURL, voting } = req.body;
 
     try {
       // finding record
@@ -31,7 +31,7 @@ const createCoffeeStore = async (req, res) => {
                   id,
                   name,
                   address,
-                  neighbourhood,
+                  locality,
                   voting,
                   imgURL,
                 },
