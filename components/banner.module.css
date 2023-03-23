@@ -37,11 +37,12 @@
   }
 
   .button {
-    background-color: var(--text-black);
+    background-color: var(--accent-100);
     cursor: pointer;
-    color: white;
+    color: var(--text-black);
     outline: 0;
-    border: 3px solid #fff;
+    border: 3px solid var(--bg-100);
+    border-radius: .1rem;
     margin-top: 2rem;
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -54,7 +55,7 @@
   .button:hover {
     transition: .3s ease-in-out;
     background-color: var(--primary-300);
-    color: #000;
+    color: var(--bg-100);
     border: 3px solid var(--primary-300);
     border-radius: .3rem;
   }
