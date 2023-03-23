@@ -5,8 +5,9 @@ import styles from "@/styles/Home.module.css";
 
 import Banner from "@/components/banner";
 import Card from "@/components/card";
+import GitHubCorner from "@/components/github-corner";
 
-import coffeeStoresData from "../data/coffee-stores.json";
+// import coffeeStoresData from "../data/coffee-stores.json";   // dummy data for initial project structure
 import { fetchCoffeeStores } from "@/lib/coffee-store";
 
 import useTrackLocation from "../hooks/use-track-location";
@@ -25,7 +26,7 @@ export async function getStaticProps(context) {
   ) {
     return {
       redirect: {
-        destination: "/problem",    // problem route page will show that env variables are not configured
+        destination: "/problem", // problem route page will show that env variables are not configured
         permanent: false,
       },
     };
@@ -71,7 +72,7 @@ export default function Home(props) {
           const coffeeStores = await response.json();
           dispatch({
             type: ACTION_TYPES.SET_COFFEE_STORES,
-            payload: { coffeeStores, },
+            payload: { coffeeStores },
           });
           setCoffeeStoresError("");
         } catch (error) {
@@ -97,6 +98,7 @@ export default function Home(props) {
         <link rel="icon" href="/static/coffee-favicon.svg" />
       </Head>
       <main className={styles.main}>
+        <GitHubCorner href={"https://github.com/Anmol-Baranwal"} />
         <Banner
           buttonTxt={
             isFindingLocation ? "Loading..." : "View the nearby stores"
@@ -142,7 +144,7 @@ export default function Home(props) {
         <div className={styles.sectionWrapper}>
           {props.coffeeStores.length > 0 && (
             <>
-              <h2 className={styles.heading2}>Diamond Stores</h2>
+              <h2 className={styles.heading2}>Famous Stores</h2>
               <div className={styles.cardLayout}>
                 {props.coffeeStores.map((coffeeStore) => {
                   return (
