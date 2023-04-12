@@ -1,6 +1,55 @@
-# Coffee Project
+# Coffee Compass
+
+Users can search for coffee shops and upvote them for others to see. The project also features an Airtable database that makes it easier to access and manage the information. 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+<hr>
+
+## :fire: Deployed Link ##
+
+This project is hosted on [Vercel Platform](https://vercel.com/). Visit the following link to view the web application.
+
+```
+https://coffee-project-anmol-baranwal.vercel.app/
+```
+<hr>
+
+## ✅ Guidelines to run web app locally
+
+- For this app to work, you need to configure the following environment variables in your .env file in the root directory.
+
+```
+NEXT_PUBLIC_FOURSQUARE_PLACES_API_KEY=<value>
+NEXT_PUBLIC_UNSPLASH_ACCESS_API_KEY=<value>
+NEXT_PUBLIC_UNSPLASH_SECRET_API_KEY=<value>
+AIRTABLE_WEB_API_KEY=<value>
+AIRTABLE_BASE_KEY=<value>
+```
+
+- Use these commands to run the application
+
+```bash
+# to install dependencies 
+npm install
+
+# to run the server
+npm run dev
+
+```
+
+- Open `http://localhost:3000` with your browser to see the application.
+
+<br>
+
+## 🚀 Complex Features
+
+- Employed serverless functions to generate API responses, allowing for efficient and scalable data retrieval.
+
+- Utilized useSWR to effectively fetch data from an Airtable database, streamlining the data fetching process.
+- Implemented both client side rendering and server side rendering with useContext, resulting in a seamless and user-friendly experience.
+- Employed various cutting-edge techniques, including lazy loading, preloading, and lighthouse, to optimize website performance.
+- Ensured the highest level of code quality and error detection by using lint, resulting in a flawless end product.
 
 ## Getting Started
 
