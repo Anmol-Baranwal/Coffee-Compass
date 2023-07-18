@@ -98,7 +98,7 @@ export default function Home(props) {
         <link rel="icon" href="/static/coffee-favicon.svg" />
       </Head>
       <main className={styles.main}>
-        <GitHubCorner href={"https://github.com/Anmol-Baranwal"} />
+        <GitHubCorner href={"https://github.com/Anmol-Baranwal/Coffee-Compass"} />
         <Banner
           buttonTxt={
             isFindingLocation ? "Loading..." : "View the nearby stores"
